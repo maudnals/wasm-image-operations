@@ -1,0 +1,11 @@
+[package]
+name = "hasher"
+version = "0.1.0"
+authors = ["Jan Bujak <j@exia.io>"]
+
+[lib]
+crate-type = ["cdylib"]
+
+[dependencies]
+stdweb = "0.4.10"
+sha1 = "0.3"
