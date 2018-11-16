@@ -23,10 +23,10 @@ console.log(Array.from(arrData.slice(0, 8)));
 console.log(arrData.slice(0, 8));
 
 console.log(hasher.reduce([1, 2, 3]));
-// console.log(hasher.reduce_c([1.0]));
-// console.log(hasher.reduce_c(arrData));
+// console.log(hasher.reduce_u8([1.0]));
+// console.log(hasher.reduce_u8(arrData));
 
 // can not use clamped arrays!!!
-console.log(hasher.reduce_c(new Uint8Array(arrData)));
+console.log(hasher.reduce_u8(new Uint8Array(arrData)));
 
 // console.log(hasher.reduce(Array.from(arrData)));
