@@ -6,7 +6,8 @@ extern crate sha1;
 
 use stdweb::{
     Array,
-    js_export
+    console,
+    js_export,
 };
 use stdweb::web::{
     TypedArray
@@ -27,17 +28,76 @@ fn reduce(arr: Array) -> f64 {
 }
 
 #[js_export]
-fn reduce_c(arr: TypedArray::<u8>) -> TypedArray::<u8> {
-    // stdweb::initialize();
-    // let b = TypedArray::<f64>::from(&arr);
-    // let vertices = TypedArray::<u8>::from(&[
-    //     255, 132][..]);
-    // let k = TypedArray::<u8>::from(&arr);
-    // return reduce8([1, 2, 3])
-    // stdweb::console!(log, "IIIIII");
-    // return arr.fold(0, |sum, x| sum + x);
-    return arr;
+fn reduce_sum_u8(arr: TypedArray<u8>) -> u32 {
+    let vec: Vec<u8> = arr.to_vec();
+    
+    // .fold(0, |sum, x| sum + x);
+    // passed as reference
+
+    // why vec
+    // why reference
+    // need u32 since u16 is max 65536, and the sum is a larger number
+    // console!(log, "HI");
+    let sum: u32 = vec.iter().fold(0, |sum, &x| sum as u32 + x as u32);
+    return sum;
 }
+#[js_export]
+fn reduce_sum_u8_vec(vec: Vec<u8>) -> u32 {
+    let sum: u32 = vec.iter().fold(0, |sum, &x| sum as u32 + x as u32);
+    return sum;
+}
+
+#[js_export]
+fn rgbas_to_rgbs(arr: TypedArray<u8>) -> Vec<u8> {
+    let vec: Vec<u8> = arr.to_vec();
+    // _ for args that you don't really use
+    let rgbs: Vec<u8> = vec.iter().enumerate().filter(|&(i, _)| (i == 0 || (i + 1) % 4 != 0)).map(|(_, &v)| v).collect::<Vec<_>>();
+    // .filter(|&(i, _)| (i == 0 || (i + 1) % 4 != 0)).collect::<Vec<u8>>();
+    return rgbs;
+}
+
+
+#[js_export]
+fn avg(arr: TypedArray<u8>) -> u8 {
+    // gotcha: ownership
+    // v1
+    // let length: u32 = arr.len() as u32;
+    // let sum: u32 = reduce_sum_u8(arr);
+
+    let sum: u32 = reduce_sum_u8_vec(arr.to_vec());
+    let len: u32 = arr.len() as u32;
+
+    let avg: u32 = sum.wrapping_div(len);
+    return avg as u8;
+}
+
+// const rgbasToRgbs = data => data.filter((n, i) => i === 0 || (i + 1) % 4 !== 0);
+
+
+
+// const calculator = (rgbaData, f, normalizer = 1) => {
+//   const rgbData = rgbasToRgbs(rgbaData);
+//   const arr = [];
+//   for (let i = 0; i < rgbData.length; i += 3) {
+//     arr.push(f([rgbData[i], rgbData[i + 1], rgbData[i + 2]]));
+//   }
+//   return average(arr) / normalizer;
+// };
+
+// export const saturation = rgbaData => {
+//   return calculator(rgbaData, pixelSaturation);
+// };
+
+// export const brightness = rgbaData => {
+//   return calculator(rgbaData, pixelBrightness, MAX_BRIGHTNESS);
+// };
+
+// const pixelSaturation = arr => {
+//   const max = Math.max(...arr);
+//   const min = Math.min(...arr);
+//   return (max - min) / max;
+// };
+
 
 // #[js_export]
 // fn reduce8(arr: TypedArray<f64>) -> f64 {
