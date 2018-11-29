@@ -72,7 +72,9 @@ body {
     @include absolute-stretched;
     @include flex-v-center;
     #img {
-      animation: fadeIn 0.8s cubic-bezier(0.29, 1.86, 0.18, 0.85) backwards 1.8s;
+      opacity: 0;
+      transform: scale(0.6);
+      animation: fadeIn 1.5s both cubic-bezier(0.06, 1.47, 0, 1) 1.5s;
       border-radius: 3px;
       box-shadow: 0 0 47px 7px rgba(0, 0, 0, 0.59);
     }
