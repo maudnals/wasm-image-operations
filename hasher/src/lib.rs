@@ -30,10 +30,8 @@ fn reduce(arr: Array) -> f64 {
 #[js_export]
 fn reduce_sum_u8(arr: TypedArray<u8>) -> u32 {
     let vec: Vec<u8> = arr.to_vec();
-    
     // .fold(0, |sum, x| sum + x);
     // passed as reference
-
     // why vec
     // why reference
     // need u32 since u16 is max 65536, and the sum is a larger number
@@ -50,7 +48,6 @@ fn reduce_sum_u8_vec(vec: Vec<u8>) -> u32 {
 #[js_export]
 fn rgbas_to_rgbs(arr: TypedArray<u8>) -> Vec<u8> {
     let vec: Vec<u8> = arr.to_vec();
-    // _ for args that you don't really use
     let rgbs: Vec<u8> = vec.iter().enumerate().filter(|&(i, _)| (i == 0 || (i + 1) % 4 != 0)).map(|(_, &v)| v).collect::<Vec<_>>();
     // .filter(|&(i, _)| (i == 0 || (i + 1) % 4 != 0)).collect::<Vec<u8>>();
     return rgbs;
@@ -69,6 +66,20 @@ fn avg(arr: TypedArray<u8>) -> u8 {
 
     let avg: u32 = sum.wrapping_div(len);
     return avg as u8;
+}
+
+#[js_export]
+fn avg_vec(vec: Vec<u8>) -> u8 {
+    let len: u32 = vec.len() as u32;
+    let sum: u32 = reduce_sum_u8_vec(vec);
+    let avg: u32 = sum.wrapping_div(len);
+    return avg as u8;
+}
+
+#[js_export]
+fn avg_rgb(arr: TypedArray<u8>) -> u8 {
+    let rgbs: Vec<u8> = rgbas_to_rgbs(arr);
+    return avg_vec(rgbs);
 }
 
 // const rgbasToRgbs = data => data.filter((n, i) => i === 0 || (i + 1) % 4 !== 0);
