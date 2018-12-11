@@ -3,17 +3,18 @@ This example shows how to integrate Rust with the [Parcel] bundler.
 Please see the `hasher` example first for how to export methods from Rust
 so that they're callable on the JavaScript side.
 
-[Parcel]: https://parceljs.org/
+[parcel]: https://parceljs.org/
 
 ### Running the demo
 
 1. Install the dependencies:
 
-       $ npm install
+   \$ npm install
 
 2. Start the demo:
 
-       $ $(npm bin)/parcel index.html
+   \$(npm bin)/parcel index.html
+   parcel serve index.html --public-url /
 
 3. Visit `http://localhost:1234` with your browser.
 
@@ -31,13 +32,13 @@ case the whole code looks like this:
 ```js
 import hasher from "../hasher/Cargo.toml";
 
-var input = document.getElementById( "input" );
-var output = document.getElementById( "output" );
-output.innerText = hasher.sha1( input.value );
+var input = document.getElementById("input");
+var output = document.getElementById("output");
+output.innerText = hasher.sha1(input.value);
 
-input.addEventListener( "keyup", function( event ) {
-    output.innerText = hasher.sha1( input.value );
+input.addEventListener("keyup", function(event) {
+  output.innerText = hasher.sha1(input.value);
 });
 ```
 
-[Parcel plugin]: https://github.com/koute/parcel-plugin-cargo-web
+[parcel plugin]: https://github.com/koute/parcel-plugin-cargo-web
