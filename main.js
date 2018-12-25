@@ -28,9 +28,9 @@ const x = new Uint8Array(arrData);
 console.log(typeof x);
 console.log(x.constructor.name);
 console.log(x);
-console.log("average wasm", hasher.avg_rgb(x));
+console.log("average wasm", hasher.avg_rgb_f64(x));
 console.log("average JS", averageRgb(x));
-console.log("wasm", benchmark(hasher.avg_rgb, x, 10));
+console.log("wasm", benchmark(hasher.avg_rgb_f64, x, 10));
 console.log("JS", benchmark(averageRgb, x, 10));
 
 // Utils

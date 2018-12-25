@@ -69,7 +69,7 @@ fn avg(arr: TypedArray<u8>) -> u8 {
 }
 
 #[js_export]
-fn avg_vec(vec: Vec<u8>) -> u8 {
+fn avg_vec_u8(vec: Vec<u8>) -> u8 {
     let len: u32 = vec.len() as u32;
     let sum: u32 = reduce_sum_u8_vec(vec);
     let avg: u32 = sum.wrapping_div(len);
@@ -77,9 +77,26 @@ fn avg_vec(vec: Vec<u8>) -> u8 {
 }
 
 #[js_export]
-fn avg_rgb(arr: TypedArray<u8>) -> u8 {
+fn avg_vec_f64(vec: Vec<u8>) -> f64 {
+    let len: u32 = vec.len() as u32;
+    let sum: u32 = reduce_sum_u8_vec(vec);
+    // todo: "as" vs "into" ?
+    // todo why f64 only
+    // todo wrapping_div gives something wrong??
+    let avg: f64 = sum as f64 / len as f64;
+    return avg as f64;
+}
+
+#[js_export]
+fn avg_rgb_u8(arr: TypedArray<u8>) -> u8 {
     let rgbs: Vec<u8> = rgbas_to_rgbs(arr);
-    return avg_vec(rgbs);
+    return avg_vec_u8(rgbs);
+}
+
+#[js_export]
+fn avg_rgb_f64(arr: TypedArray<u8>) -> f64 {
+    let rgbs: Vec<u8> = rgbas_to_rgbs(arr);
+    return avg_vec_f64(rgbs);
 }
 
 // const rgbasToRgbs = data => data.filter((n, i) => i === 0 || (i + 1) % 4 !== 0);

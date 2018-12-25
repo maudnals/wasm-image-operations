@@ -33,6 +33,17 @@
   }
 }
 
+.background {
+  --img-size: 100%;
+  --img-offset: -5%;
+  background-image: url("img/memory-dali-background.png");
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center center;
+  width: var(--img-size);
+  height: var(--img-size);
+}
+
 body {
   color: white;
   font-family: sans-serif;
@@ -40,41 +51,13 @@ body {
   width: 100vw;
   height: 100vh;
   overflow: hidden;
-  .background {
-    --img-size: 110%;
-    --img-offset: -5%;
-    animation: darken 1.8s cubic-bezier(0.25, 0.46, 0.09, 1.07) forwards;
-    // filter: blur(8px) brightness(20%);
-    background-image: url("img/memory-dali.png");
-    background-size: cover;
-    background-repeat: no-repeat;
-    background-position: center center;
-    width: var(--img-size);
-    height: var(--img-size);
-    position: relative;
-    left: var(--img-offset);
-    top: var(--img-offset);
-    &::after {
-      @include absolute-stretched;
-      width: 100%;
-      height: 100%;
-      background-image: linear-gradient(
-        rgba(255, 0, 0, 0) 0%,
-        rgba(255, 0, 0, 0.05) 50%,
-        rgba(255, 0, 0, 0.219) 80%,
-        rgba(255, 0, 0, 0.4) 90%,
-        rgba(255, 0, 0, 0.8) 100%
-      );
-      content: "";
-    }
-  }
   .content {
     @include absolute-stretched;
     @include flex-v-center;
     #img {
       opacity: 0;
       transform: scale(0.6);
-      animation: fadeIn 1.5s both cubic-bezier(0.06, 1.47, 0, 1) 1.5s;
+      animation: fadeIn 1.5s both cubic-bezier(0.06, 1.47, 0, 1);
       border-radius: 3px;
       box-shadow: 0 0 47px 7px rgba(0, 0, 0, 0.59);
     }
