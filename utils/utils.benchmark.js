@@ -1,3 +1,7 @@
+/*
+// Benchmark JS vs wasm functions
+*/
+
 export default (func, input, iterationCount) => {
   const start = performance.now();
   for (let i = 0; i < iterationCount; i++) {
