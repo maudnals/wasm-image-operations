@@ -1,0 +1,90 @@
+/* Typography utils */
+
+.uppercase {
+  text-transform: uppercase;
+}
+
+.light {
+  opacity: 0.6;
+}
+
+@mixin text-l {
+  font-size: 1.4rem;
+}
+
+/* Color utils */
+
+.color-primary {
+  color: var(--color-primary);
+}
+
+.color-secondary {
+  color: var(--color-secondary);
+}
+
+/* Layout utils */
+
+@mixin flex-v-center {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+@mixin absolute-stretched {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+}
+
+.mv1 {
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+}
+
+/* Animation utils */
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: scale(0.6);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+@keyframes darken {
+  from {
+    filter: blur(8px) brightness(100%);
+  }
+  to {
+    filter: blur(8px) brightness(20%);
+  }
+}
+
+.blinking {
+  animation: blinking 100 var(--blinking-dot-duration);
+}
+
+.blinking-delayed {
+  animation-delay: calc(var(--blinking-dot-duration) / 2);
+}
+
+@keyframes blinking {
+  0% {
+    opacity: 1;
+  }
+  30% {
+    opacity: 0.2;
+  }
+  60% {
+    opacity: 0.2;
+  }
+  100% {
+    opacity: 1;
+  }
+}
