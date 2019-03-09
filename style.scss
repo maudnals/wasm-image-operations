@@ -5,7 +5,7 @@ body {
   --color-primary: #57ffab;
   --color-secondary: #c547ff;
   /* Animations */
-  --pulse-dot-duration: 0.36s;
+  --blinking-dot-duration: 0.36s;
 }
 
 /* Typography */
@@ -142,15 +142,19 @@ body {
   }
 }
 
-.pulse {
-  animation: pulse 100 var(--pulse-dot-duration);
+.blink-dot {
+  font-size: 1.2rem;
 }
 
-.pulse-delayed {
-  animation-delay: calc(var(--pulse-dot-duration) / 2);
+.blinking {
+  animation: blinking 100 var(--blinking-dot-duration);
 }
 
-@keyframes pulse {
+.blinking-delayed {
+  animation-delay: calc(var(--blinking-dot-duration) / 2);
+}
+
+@keyframes blinking {
   0% {
     opacity: 1;
   }
