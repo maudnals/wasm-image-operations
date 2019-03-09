@@ -1,8 +1,11 @@
-/* Colors */
+/* Variables */
 
 body {
+  /* Colors */
   --color-primary: #57ffab;
   --color-secondary: #c547ff;
+  /* Animations */
+  --pulse-dot-duration: 0.36s;
 }
 
 /* Typography */
@@ -22,6 +25,10 @@ body {
 
 .light {
   opacity: 0.6;
+}
+
+@mixin text-l {
+  font-size: 1.4rem;
 }
 
 /* Color utils */
@@ -51,8 +58,9 @@ body {
   left: 0;
 }
 
-.m1 {
-  margin: 1rem;
+.mv1 {
+  margin-top: 1rem;
+  margin-bottom: 1rem;
 }
 
 /* Main */
@@ -92,6 +100,18 @@ body {
   }
 }
 
+.output-section {
+  height: 2rem;
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  .timing {
+    text-align: right;
+    @include text-l;
+  }
+}
+
 /* Animation utils */
 
 @keyframes fadeIn {
@@ -115,11 +135,11 @@ body {
 }
 
 .pulse {
-  animation: pulse infinite 0.38s;
+  animation: pulse 100 var(--pulse-dot-duration);
 }
 
 .pulse-delayed {
-  animation-delay: 0.19s;
+  animation-delay: calc(var(--pulse-dot-duration) / 2);
 }
 
 @keyframes pulse {
