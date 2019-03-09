@@ -1,11 +1,13 @@
-import { canvasToCanvasData, drawImgOnCanvas } from "./utils/utils.canvas";
-import { averageRgb } from "./utils/utils.pixels";
-import hasher from "./hasher/Cargo.toml";
-import benchmark from "./utils/utils.benchmark";
+import { canvasToCanvasData, drawImgOnCanvas } from './utils/utils.canvas';
+import { averageRgb } from './utils/utils.pixels';
+import hasher from './hasher/Cargo.toml';
+import benchmark from './utils/utils.benchmark';
+import { displayTextInElement } from './utils/utils.dom';
 
-const img = document.querySelector("#img");
+const img = document.querySelector('#img');
 const canvas = drawImgOnCanvas(img);
 const arrData = canvasToCanvasData(canvas);
+
 console.log(typeof arrData);
 console.log(arrData.constructor.name);
 // console.log(arrData);
@@ -24,22 +26,13 @@ console.log(arrData.constructor.name);
 // const rgbs = hasher.rgbas_to_rgbs(new Uint8Array(arrData));
 // console.log(rgbs);
 
-const x = new Uint8Array(arrData);
-console.log(typeof x);
-console.log(x.constructor.name);
-console.log(x);
-console.log("average wasm", hasher.avg_rgb_f64(x));
-console.log("average JS", averageRgb(x));
-console.log("wasm", benchmark(hasher.avg_rgb_f64, x, 10));
-console.log("JS", benchmark(averageRgb, x, 10));
+const arrData_int8 = new Uint8Array(arrData);
+console.log(typeof arrData_int8);
+console.log(arrData_int8.constructor.name);
+console.log(arrData_int8);
+console.log('average, calculated with wasm', hasher.avg_rgb_f64(arrData_int8));
+console.log('average, calculated with JS', averageRgb(arrData_int8));
 
-// Utils
-//
-
-// var input = document.getElementById("input");
-// var output = document.getElementById("output");
-// output.innerText = hasher.sha1(input.value);
-
-// input.addEventListener("keyup", function(event) {
-//   output.innerText = hasher.sha1(input.value);
-// });
+const avgWASM = benchmark(hasher.avg_rgb_f64, arrData_int8);
+displayTextInElement('timingJS', benchmark(averageRgb, arrData_int8));
+displayTextInElement('timingWASM', benchmark(hasher.avg_rgb_f64, arrData_int8));
