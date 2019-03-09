@@ -15,20 +15,24 @@
     <div class="background"></div>
     <div class="content">
       <div><img id="img" src="./assets/img/memory-dali.png" alt="" /></div>
-      <div class="hash">
-        <div id="output">
-          <div class="light">Average pixel value:</div>
-          <div class="mv1 output-section">
-            <span class="light">Timing JS:</span>
-            <span class="timing" id="timingJS"
-              ><span class="pulse">⬤</span></span
-            >
+      <div id="output">
+        <div class="light">Average pixel value:</div>
+        <div class="mv1 output-section">
+          <div class="light">Timing JS:</div>
+          <div class="timing-container">
+            <div class="timing" id="timingJS">
+              <span class="pulse pulse-delayed">⬤</span>
+            </div>
+            <div>ms</div>
           </div>
-          <div class="color-secondary mv1 output-section">
-            <span class="light">Timing WASM:</span>
-            <span class="timing" id="timingWASM"
-              ><span class="pulse pulse-delayed">⬤</span></span
-            >
+        </div>
+        <div class="color-secondary mv1 output-section">
+          <div class="light">Timing WASM:</div>
+          <div class="timing-container">
+            <div class="timing" id="timingWASM">
+              <span class="pulse pulse-delayed">⬤</span>
+            </div>
+            <div>ms</div>
           </div>
         </div>
       </div>
