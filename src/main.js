@@ -1,8 +1,8 @@
-import { canvasToCanvasData, drawImgOnCanvas } from './utils/utils.canvas';
-import { averageRgb } from './utils/utils.pixels';
-import hasher from './hasher/Cargo.toml';
-import benchmark from './utils/utils.benchmark';
-import { displayTextInElement } from './utils/utils.dom';
+import hasher from '../hasher/Cargo.toml';
+import benchmark from '../utils/utils.benchmark';
+import { canvasToCanvasData, drawImgOnCanvas } from '../utils/utils.canvas';
+import { averageRgb } from '../utils/utils.pixels';
+import { displayTextInElement } from '../utils/utils.dom';
 
 const img = document.querySelector('#img');
 const canvas = drawImgOnCanvas(img);
