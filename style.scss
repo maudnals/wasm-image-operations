@@ -5,6 +5,15 @@ body {
   --color-secondary: #c547ff;
 }
 
+/* Typography */
+
+@font-face {
+  font-family: 'sharetech';
+  font-style: normal;
+  font-weight: 400;
+  src: url(assets/fonts/ShareTechMono-Regular.ttf);
+}
+
 /* Typography utils */
 
 .uppercase {
@@ -83,15 +92,6 @@ body {
   }
 }
 
-/* Typography */
-
-@font-face {
-  font-family: 'sharetech';
-  font-style: normal;
-  font-weight: 400;
-  src: url(assets/fonts/ShareTechMono-Regular.ttf);
-}
-
 /* Animation utils */
 
 @keyframes fadeIn {
@@ -111,5 +111,28 @@ body {
   }
   to {
     filter: blur(8px) brightness(20%);
+  }
+}
+
+.pulse {
+  animation: pulse infinite 0.38s;
+}
+
+.pulse-delayed {
+  animation-delay: 0.19s;
+}
+
+@keyframes pulse {
+  0% {
+    opacity: 1;
+  }
+  30% {
+    opacity: 0.2;
+  }
+  60% {
+    opacity: 0.2;
+  }
+  100% {
+    opacity: 1;
   }
 }
