@@ -1,3 +1,32 @@
+/* Colors */
+
+body {
+  --color-primary: #57ffab;
+  --color-secondary: #c547ff;
+}
+
+/* Typography utils */
+
+.uppercase {
+  text-transform: uppercase;
+}
+
+.light {
+  opacity: 0.6;
+}
+
+/* Color utils */
+
+.color-primary {
+  color: var(--color-primary);
+}
+
+.color-secondary {
+  color: var(--color-secondary);
+}
+
+/* Layout utils */
+
 @mixin flex-v-center {
   display: flex;
   flex-direction: column;
@@ -12,6 +41,58 @@
   bottom: 0;
   left: 0;
 }
+
+.m1 {
+  margin: 1rem;
+}
+
+/* Main */
+
+.background {
+  --img-size: 100%;
+  --img-offset: -5%;
+  background-image: url('img/memory-dali-background.png');
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center center;
+  width: var(--img-size);
+  height: var(--img-size);
+}
+
+body {
+  color: var(--color-primary);
+  font-family: 'sharetech';
+  font-size: 1.2rem;
+  margin: 0px;
+  width: 100vw;
+  height: 100vh;
+  overflow: hidden;
+  .content {
+    @include absolute-stretched;
+    @include flex-v-center;
+    #img {
+      opacity: 0;
+      transform: scale(0.6);
+      animation: fadeIn 1.5s both cubic-bezier(0.06, 1.47, 0, 1);
+      border-radius: 3px;
+      box-shadow: 0 0 47px 7px rgba(0, 0, 0, 0.59);
+    }
+    .hash {
+      padding: 2rem;
+    }
+  }
+}
+
+/* Typography */
+
+@font-face {
+  font-family: 'sharetech';
+  font-style: normal;
+  font-weight: 400;
+  src: url(assets/fonts/ShareTechMono-Regular.ttf);
+}
+
+/* Animation utils */
 
 @keyframes fadeIn {
   from {
@@ -30,39 +111,5 @@
   }
   to {
     filter: blur(8px) brightness(20%);
-  }
-}
-
-.background {
-  --img-size: 100%;
-  --img-offset: -5%;
-  background-image: url("img/memory-dali-background.png");
-  background-size: cover;
-  background-repeat: no-repeat;
-  background-position: center center;
-  width: var(--img-size);
-  height: var(--img-size);
-}
-
-body {
-  color: white;
-  font-family: sans-serif;
-  margin: 0px;
-  width: 100vw;
-  height: 100vh;
-  overflow: hidden;
-  .content {
-    @include absolute-stretched;
-    @include flex-v-center;
-    #img {
-      opacity: 0;
-      transform: scale(0.6);
-      animation: fadeIn 1.5s both cubic-bezier(0.06, 1.47, 0, 1);
-      border-radius: 3px;
-      box-shadow: 0 0 47px 7px rgba(0, 0, 0, 0.59);
-    }
-    .hash {
-      padding: 2rem;
-    }
   }
 }

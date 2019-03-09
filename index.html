@@ -3,6 +3,11 @@
   <head>
     <meta charset="utf-8" />
     <title>stdweb • Hasher (Parcel)</title>
+    <link
+      rel="preload"
+      href="./assets/fonts/ShareTechMono-Regular.ttf"
+      as="font"
+    />
     <link rel="stylesheet" href="./style.scss" />
   </head>
   <body>
@@ -11,11 +16,17 @@
     <div class="content">
       <div><img id="img" src="./img/memory-dali.png" alt="" /></div>
       <div class="hash">
-        <div class="form">
-          <input type="text" name="input" id="input" value="Type here" />
+        <div id="output">
+          <div class="light">Average pixel value:</div>
+          <div class="m1">
+            <span class="light">Timing JS:</span>
+            <span>test</span>
+          </div>
+          <div class="color-secondary m1">
+            <span class="light">Timing WASM:</span>
+            <span>test</span>
+          </div>
         </div>
-        <h3>Digest:</h3>
-        <span id="output">Digest will be shown here</span>
       </div>
     </div>
   </body>
