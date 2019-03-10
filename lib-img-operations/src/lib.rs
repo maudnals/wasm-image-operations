@@ -5,7 +5,6 @@ extern crate stdweb;
 
 use stdweb::{
     Array,
-    console,
     js_export,
 };
 use stdweb::web::{
@@ -14,23 +13,17 @@ use stdweb::web::{
 
 
 #[js_export]
-fn reduce(arr: Array) -> f64 {
-    // return arr.fold(0, |sum, x| sum + x);
-    return 123.0;
-}
-
-#[js_export]
 fn reduce_sum_u8(arr: TypedArray<u8>) -> u32 {
+    // need vec to iter() (there is no iter() on TypedArray)
     let vec: Vec<u8> = arr.to_vec();
-    // .fold(0, |sum, x| sum + x);
-    // passed as reference
-    // why vec
-    // why reference
-    // need u32 since u16 is max 65536, and the sum is a larger number
-    // console!(log, "HI");
+    // need u32 since sum > max(u16) = 65536
+    // so x needs to be casted
+    // but only primitive types can be cast into each other, so x needs to be dereferenced
     let sum: u32 = vec.iter().fold(0, |sum, &x| sum as u32 + x as u32);
+    // alternative if no need to cast: vec.iter().sum()
     return sum;
 }
+
 #[js_export]
 fn reduce_sum_u8_vec(vec: Vec<u8>) -> u32 {
     let sum: u32 = vec.iter().fold(0, |sum, &x| sum as u32 + x as u32);
@@ -45,44 +38,41 @@ fn rgbas_to_rgbs(arr: TypedArray<u8>) -> Vec<u8> {
     return rgbs;
 }
 
+// #[js_export]
+// fn avg(arr: TypedArray<u8>) -> u8 {
+//     // gotcha: ownership
+//     // v1
+//     // let length: u32 = arr.len() as u32;
+//     // let sum: u32 = reduce_sum_u8(arr);
 
-#[js_export]
-fn avg(arr: TypedArray<u8>) -> u8 {
-    // gotcha: ownership
-    // v1
-    // let length: u32 = arr.len() as u32;
-    // let sum: u32 = reduce_sum_u8(arr);
+//     let sum: u32 = reduce_sum_u8_vec(arr.to_vec());
+//     let len: u32 = arr.len() as u32;
 
-    let sum: u32 = reduce_sum_u8_vec(arr.to_vec());
-    let len: u32 = arr.len() as u32;
+//     let avg: u32 = sum.wrapping_div(len);
+//     return avg as u8;
+// }
 
-    let avg: u32 = sum.wrapping_div(len);
-    return avg as u8;
-}
+// #[js_export]
+// fn avg_vec_u8(vec: Vec<u8>) -> u8 {
+//     let len: u32 = vec.len() as u32;
+//     let sum: u32 = reduce_sum_u8_vec(vec);
+//     let avg: u32 = sum.wrapping_div(len);
+//     return avg as u8;
+// }
 
-#[js_export]
-fn avg_vec_u8(vec: Vec<u8>) -> u8 {
-    let len: u32 = vec.len() as u32;
-    let sum: u32 = reduce_sum_u8_vec(vec);
-    let avg: u32 = sum.wrapping_div(len);
-    return avg as u8;
-}
+// #[js_export]
+// fn avg_rgb_u8(arr: TypedArray<u8>) -> u8 {
+//     let rgbs: Vec<u8> = rgbas_to_rgbs(arr);
+//     return avg_vec_u8(rgbs);
+// }
 
 #[js_export]
 fn avg_vec_f64(vec: Vec<u8>) -> f64 {
     let len: u32 = vec.len() as u32;
     let sum: u32 = reduce_sum_u8_vec(vec);
-    // todo: "as" vs "into" ?
     // todo why f64 only
-    // todo wrapping_div gives something wrong??
     let avg: f64 = sum as f64 / len as f64;
     return avg as f64;
-}
-
-#[js_export]
-fn avg_rgb_u8(arr: TypedArray<u8>) -> u8 {
-    let rgbs: Vec<u8> = rgbas_to_rgbs(arr);
-    return avg_vec_u8(rgbs);
 }
 
 #[js_export]
@@ -90,58 +80,3 @@ fn avg_rgb_f64(arr: TypedArray<u8>) -> f64 {
     let rgbs: Vec<u8> = rgbas_to_rgbs(arr);
     return avg_vec_f64(rgbs);
 }
-
-// const rgbasToRgbs = data => data.filter((n, i) => i === 0 || (i + 1) % 4 !== 0);
-
-
-
-// const calculator = (rgbaData, f, normalizer = 1) => {
-//   const rgbData = rgbasToRgbs(rgbaData);
-//   const arr = [];
-//   for (let i = 0; i < rgbData.length; i += 3) {
-//     arr.push(f([rgbData[i], rgbData[i + 1], rgbData[i + 2]]));
-//   }
-//   return average(arr) / normalizer;
-// };
-
-// export const saturation = rgbaData => {
-//   return calculator(rgbaData, pixelSaturation);
-// };
-
-// export const brightness = rgbaData => {
-//   return calculator(rgbaData, pixelBrightness, MAX_BRIGHTNESS);
-// };
-
-// const pixelSaturation = arr => {
-//   const max = Math.max(...arr);
-//   const min = Math.min(...arr);
-//   return (max - min) / max;
-// };
-
-
-// #[js_export]
-// fn reduce8(arr: TypedArray<f64>) -> f64 {
-//     return 456.0;
-// }
-
-// #[js_export]
-// fn reduceU8(arr: stdweb::web::TypedArray) -> f64 {
-//     return 123.0;
-// }
-
-// use stdweb::web::UnsafeTypedArray;
-// use 
-// use math::round;
-
-// #[no_mangle]
-// pub fn add(a: f64, b: f64) -> f64 {
-//   return a + b
-// }
-
-// #[no_mangle]
-// pub fn avg(arr: UnsafeTypedArray<f64>) -> UnsafeTypedArray<f64> {
-//   // let a = vec![4, 5, 6];
-//   // println!("hello there!");
-//   // let sum = arr.iter().fold(0, |acc, x| acc + x);
-//   return arr;
-// }
