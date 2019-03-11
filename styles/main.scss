@@ -27,31 +27,36 @@ body {
       border-radius: 3px;
       box-shadow: 0 0 47px 7px rgba(0, 0, 0, 0.59);
     }
-    #output {
-      padding: 2rem;
-      width: 30%;
+    .output-section {
+      @include text-s;
+      display: flex;
+      background: #26002d96;
+      padding: 0.2rem;
+      transform: translateY(-2rem);
     }
-  }
-}
-
-.output-section {
-  height: 2rem;
-  width: 100%;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  .timing {
-    text-align: right;
-    width: 6rem;
-    @include text-l;
-  }
-  .timing-container {
-    width: 8rem;
-    display: flex;
-    align-items: baseline;
-    justify-content: space-between;
-  }
-  .blink-dot {
-    font-size: 1.2rem;
+    .benchmark {
+      width: 40%;
+      .benchmark-section {
+        height: 2rem;
+        width: 100%;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        .timing {
+          text-align: right;
+          width: 6rem;
+          @include text-l;
+        }
+        .timing-container {
+          width: 8rem;
+          display: flex;
+          align-items: baseline;
+          justify-content: space-between;
+        }
+        .blink-dot {
+          font-size: 1.2rem;
+        }
+      }
+    }
   }
 }

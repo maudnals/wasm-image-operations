@@ -3,6 +3,7 @@ import benchmark from '../utils/utils.benchmark';
 import { canvasToCanvasData, drawImgOnCanvas } from '../utils/utils.canvas';
 import { averageRgb } from '../utils/utils.pixels';
 import { displayTextInElement } from '../utils/utils.dom';
+import { formatNumber } from '../utils/utils.format';
 
 const img = document.querySelector('#img');
 const canvas = drawImgOnCanvas(img);
@@ -10,11 +11,18 @@ const arrData = canvasToCanvasData(canvas);
 
 const arrData_int8 = new Uint8Array(arrData);
 const avgWASM = benchmark(libImgOperations.avg_rgb_f64, arrData_int8);
-displayTextInElement('timingJS', benchmark(averageRgb, arrData_int8));
-displayTextInElement(
-  'timingWASM',
-  benchmark(libImgOperations.avg_rgb_f64, arrData_int8)
-);
+displayTextInElement('pixelValue', formatNumber(averageRgb(arrData_int8)));
+
+setTimeout(() => {
+  displayTextInElement(
+    'timingJS',
+    formatNumber(benchmark(averageRgb, arrData_int8))
+  );
+  displayTextInElement(
+    'timingWASM',
+    formatNumber(benchmark(libImgOperations.avg_rgb_f64, arrData_int8))
+  );
+}, 1000);
 
 // console.log(typeof arrData);
 // console.log(arrData.constructor.name);

@@ -12,6 +12,10 @@
   font-size: 1.4rem;
 }
 
+@mixin text-s {
+  font-size: 0.9rem;
+}
+
 /* Color utils */
 
 .color-primary {

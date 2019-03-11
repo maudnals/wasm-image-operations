@@ -15,10 +15,13 @@
     <div class="background"></div>
     <div class="content">
       <div><img id="img" src="./assets/img/memory-dali.png" alt="" /></div>
-      <div id="output">
+      <div class="output-section">
         <div class="light">Average pixel value:</div>
-        <div class="mv1 output-section">
-          <div class="light">Timing JS:</div>
+        <div id="pixelValue"></div>
+      </div>
+      <div class="benchmark">
+        <div class="mv1 benchmark-section">
+          <div class="light">JS benchmark:</div>
           <div class="timing-container">
             <div class="timing" id="timingJS">
               <span class="blink-dot blinking">⬤</span>
@@ -26,8 +29,8 @@
             <div>ms</div>
           </div>
         </div>
-        <div class="color-secondary mv1 output-section">
-          <div class="light">Timing WASM:</div>
+        <div class="color-secondary mv1 benchmark-section">
+          <div class="light">Wasm benchmark:</div>
           <div class="timing-container">
             <div class="timing" id="timingWASM">
               <span class="blink-dot blinking blinking-delayed">⬤</span>

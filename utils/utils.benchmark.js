@@ -10,5 +10,5 @@ export default (func, input, iterationCount = DEFAULT_ITERATION_COUNT) => {
     func(input);
   }
   const finish = performance.now();
-  return ((finish - start) / DEFAULT_ITERATION_COUNT).toFixed(2);
+  return (finish - start) / DEFAULT_ITERATION_COUNT;
 };
