@@ -1,4 +1,12 @@
-### Demo
+# Wasm-image-operations  
+
+### Demo  
+
+
+<p>
+   <img with="540" src="https://github.com/maudnals/wasm-image-operations/blob/master/doc/demo.gif?raw=true"/>
+<p>
+
 
 ### Run
 
