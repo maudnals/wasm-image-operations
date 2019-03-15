@@ -1,14 +1,17 @@
-# Wasm-image-operations  
+# Wasm-image-operations    
 
-### Demo  
+JS vs Wasm benchmark, when perform the same basic operations on an image's pixels.
 
+## Demo  
 
-<p>
-   <img with="540" src="https://github.com/maudnals/wasm-image-operations/blob/master/doc/demo.gif?raw=true"/>
-<p>
+<p align="center">
+<img with="540" src="https://github.com/maudnals/wasm-image-operations/blob/master/doc/demo.gif?raw=true"/>
+</p>  
 
+* The average pixel value (R+G+B) of the image is displayed 
+* Below the image, a benchmark of JS vs Wasm duration to perform the operations is displayed (over multiple iterations).  
 
-### Run
+## Run
 
 1. Install the dependencies:
 
@@ -21,11 +24,11 @@
 
 3. Visit `http://localhost:1234` with your browser.
 
-### Built with Parcel+Rust
+## Built with Parcel+Rust
 
 Boilerplate used: https://github.com/koute/stdweb/tree/master/examples/hasher-parcel
 
-### How does this work?
+## How does this work?
 
 A [parcel plugin] is used to integrate `cargo-web` with Parcel.
 
