@@ -1,5 +1,5 @@
 /*
-DOM commands (side effects)
+Utils to format displayed data
 */
 
 const DECIMALS = 2;
