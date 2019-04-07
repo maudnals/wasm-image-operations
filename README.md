@@ -8,8 +8,8 @@ JS vs Wasm benchmark, when perform the same basic operations on an image's pixel
 <img with="540" src="https://github.com/maudnals/wasm-image-operations/blob/master/doc/demo.gif?raw=true"/>
 </p>  
 
-* The average pixel value (R+G+B) of the image is displayed 
-* Below the image, a benchmark of JS vs Wasm duration to perform the operations is displayed (over multiple iterations).  
+* The average pixel value (R+G+B) of the image is computed with WebAssembly. 
+* A benchmark of JS vs Wasm duration to perform the operations is performed (over multiple iterations) -  see below the image.
 
 ## Run
 
