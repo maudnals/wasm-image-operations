@@ -38,6 +38,20 @@ fn rgbas_to_rgbs(arr: TypedArray<u8>) -> Vec<u8> {
     return rgbs;
 }
 
+#[js_export]
+fn avg_vec_f64(vec: Vec<u8>) -> f64 {
+    let len: u32 = vec.len() as u32;
+    let sum: u32 = reduce_sum_u8_vec(vec);
+    let avg: f64 = sum as f64 / len as f64;
+    return avg as f64;
+}
+
+#[js_export]
+fn avg_rgb_f64(arr: TypedArray<u8>) -> f64 {
+    let rgbs: Vec<u8> = rgbas_to_rgbs(arr);
+    return avg_vec_f64(rgbs);
+}
+
 // #[js_export]
 // fn avg(arr: TypedArray<u8>) -> u8 {
 //     // gotcha: ownership
@@ -65,18 +79,3 @@ fn rgbas_to_rgbs(arr: TypedArray<u8>) -> Vec<u8> {
 //     let rgbs: Vec<u8> = rgbas_to_rgbs(arr);
 //     return avg_vec_u8(rgbs);
 // }
-
-#[js_export]
-fn avg_vec_f64(vec: Vec<u8>) -> f64 {
-    let len: u32 = vec.len() as u32;
-    let sum: u32 = reduce_sum_u8_vec(vec);
-    // todo why f64 only
-    let avg: f64 = sum as f64 / len as f64;
-    return avg as f64;
-}
-
-#[js_export]
-fn avg_rgb_f64(arr: TypedArray<u8>) -> f64 {
-    let rgbs: Vec<u8> = rgbas_to_rgbs(arr);
-    return avg_vec_f64(rgbs);
-}
