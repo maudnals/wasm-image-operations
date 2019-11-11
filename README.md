@@ -1,5 +1,7 @@
 # Wasm-image-operations    
 
+start-node.sh
+
 JS vs Wasm benchmark, when perform the same basic operations on an image's pixels.
 
 ## Demo  
